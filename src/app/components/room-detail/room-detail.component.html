@@ -1,0 +1,63 @@
+<div class="flex justify-center">
+  <div class="mt-10 min-w-[500px]">
+    <div class="mb-5 bg-slate-200">
+      <p
+        [routerLink]="['/', 'home']"
+        routerLinkActive="active"
+        class="px-5 py-2 w-fit hover:bg-slate-300 cursor-pointer block"
+      >
+        Home
+      </p>
+    </div>
+
+    <ng-container *ngIf="roomDetail; else notFoundGroup">
+      <h1 class="mb-4 flex items-center justify-between">
+        <p class="flex flex-col">
+          <span class="text-2xl font-bold"
+            >Welcome to Group {{ roomDetail?.roomName }}</span
+          >
+          <span>{{ roomDetail?.roomDescription }}</span>
+          <span>Owner: {{ roomDetail?.owner.name }}</span>
+        </p>
+        <button
+          (click)="createTask()"
+          class="bg-blue-500 border text-white text-sm p-2 rounded-md font-bold hover:bg-blue-600"
+        >
+          Add Task
+        </button>
+      </h1>
+
+      <ng-container *ngIf="roomTaskList.length; else noTasks">
+        <div class="flex flex-col gap-2">
+          <div
+            *ngFor="let task of roomTaskList; let roomNum = index"
+            class="border rounded-md px-5 py-2 shadow"
+          >
+            <span>{{ roomNum + 1 }}</span>
+            <div class="flex flex-col gap-2">
+              <h1 class="text-2xl font-bold underline cursor-pointer">
+                {{ task.title }}
+              </h1>
+              <p class="text-sm">{{ task.description }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-template #notFoundGroup>
+    <!-- Component or content to render if groupId is null or not available -->
+    <h1 class="text-red-500 text-center text-lg">Not found group</h1>
+    <a
+      [routerLink]="['/', 'home']"
+      routerLinkActive="active"
+      class="text-blue-500 hover:underline cursor-pointer block"
+      >Home</a
+    >
+  </ng-template>
+
+  <ng-template #noTasks>
+    <!-- Component or content to render if groupId is null or not available -->
+    <h1 class="text-red-500 text-center text-lg">No tasks</h1>
+  </ng-template>
+</div>

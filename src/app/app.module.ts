@@ -13,6 +13,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CustomInterceptor } from './services/custom.interceptor';
 import { MyInterceptor } from './services/my.interceptor';
 import { MyhttpInterceptor } from './services/myhttp.interceptor';
+import { CreateRoomModalComponent } from './components/create-room-modal/create-room-modal.component';
+import { MaterialModule } from './material-module';
+import { RoomDetailComponent } from './components/room-detail/room-detail.component';
+import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,9 @@ import { MyhttpInterceptor } from './services/myhttp.interceptor';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    CreateRoomModalComponent,
+    RoomDetailComponent,
+    CreateTaskModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +36,7 @@ import { MyhttpInterceptor } from './services/myhttp.interceptor';
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    MaterialModule,
   ],
   providers: [
     {

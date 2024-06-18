@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import ValidateForm from 'src/app/helpers/validationform';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
-import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-login',

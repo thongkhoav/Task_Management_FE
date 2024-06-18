@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center w-full h-full bg-slate-100">
   <div class="shadow-md p-10 rounded-md border border-gray-200 bg-white">
     <h1 class="text-3xl font-bold uppercase text-center">register</h1>
-    <form action="" class="min-w-80">
+    <form [formGroup]="registerForm" class="min-w-80" (ngSubmit)="onRegister()">
       <div class="mb-4">
         <label for="email" class="block text-sm font-medium text-gray-700"
           >Email</label
@@ -10,6 +10,7 @@
           type="email"
           id="email"
           name="email"
+          formControlName="email"
           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
       </div>
@@ -21,6 +22,7 @@
           type="text"
           id="fullname"
           name="fullname"
+          formControlName="fullname"
           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
       </div>
@@ -31,6 +33,7 @@
         <input
           type="password"
           id="password"
+          formControlName="password"
           name="password"
           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
