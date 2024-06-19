@@ -1,13 +1,34 @@
 <form [formGroup]="myform" (ngSubmit)="createTask()">
   <h1 mat-dialog-title>{{ inputdata.title }}</h1>
   <div mat-dialog-content>
-    <mat-form-field>
+    <mat-form-field class="w-full">
       <mat-label>Title</mat-label>
       <input formControlName="title" matInput />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="w-full">
       <mat-label>Description</mat-label>
       <input matInput formControlName="description" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Set due date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="myform.get('dueDate')?.hasError('invalidDate')">
+        Due date must be greater than today.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="users.length" class="w-full mt-2">
+      <mat-label>Assign user</mat-label>
+      <mat-select formControlName="userId">
+        <mat-option *ngFor="let user of users; track: user" [value]="user.id">{{
+          user.name
+        }}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <div mat-dialog-actions>

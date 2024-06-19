@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   private baseUrl: string = environment.API_URL;
   private userPayload: any;
-  constructor(private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient) {
     this.userPayload = this.decodedToken();
   }
 
@@ -20,6 +20,11 @@ export class AuthService {
 
   signIn(loginObj: any) {
     return this.http.post<any>(`${this.baseUrl}/api/auth/login`, loginObj);
+  }
+
+  signOut() {
+    this.router.navigate(['login']);
+    localStorage.removeItem('task_management_token');
   }
 
   storeToken(accessToken: string, refreshToken: string) {

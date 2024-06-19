@@ -1,49 +1,47 @@
-<div class="flex items-center justify-center w-full h-full bg-slate-100">
-  <div class="shadow-md p-10 rounded-md border border-gray-200 bg-white">
-    <h1 class="text-3xl font-bold uppercase text-center">login</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="min-w-80">
-      <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-700"
-          >Email</label
-        >
-        <input
-          required
-          formControlName="email"
-          type="email"
-          id="email"
-          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
-      <div class="mb-4">
-        <label for="password" class="block text-sm font-medium text-gray-700"
-          >Password</label
-        >
-        <input
-          required
-          formControlName="password"
-          type="password"
-          id="password"
-          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+<div class="mt-40 shadow-md p-10 rounded-md border border-gray-200 bg-white">
+  <h1 class="text-3xl font-bold uppercase text-center">login</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="min-w-80">
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-700"
+        >Email</label
+      >
+      <input
+        required
+        formControlName="email"
+        type="email"
+        id="email"
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="password" class="block text-sm font-medium text-gray-700"
+        >Password</label
+      >
+      <input
+        required
+        formControlName="password"
+        type="password"
+        id="password"
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      />
+    </div>
 
-      <div class="mb-4">
-        <button
-          type="submit"
-          class="w-full px-3 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
-        >
-          Login
-        </button>
-      </div>
-      <p class="flex items-center gap-1 justify-center">
-        <span>Don't have an account?</span>
-        <a
-          [routerLink]="['/', 'register']"
-          routerLinkActive="active"
-          class="text-blue-500 hover:underline cursor-pointer block"
-          >Register account</a
-        >
-      </p>
-    </form>
-  </div>
+    <div class="mb-4">
+      <button
+        type="submit"
+        class="w-full px-3 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
+      >
+        Login
+      </button>
+    </div>
+    <p class="flex items-center gap-1 justify-center">
+      <span>Don't have an account?</span>
+      <a
+        [routerLink]="['/', 'register']"
+        routerLinkActive="active"
+        class="text-blue-500 hover:underline cursor-pointer block"
+        >Register account</a
+      >
+    </p>
+  </form>
 </div>

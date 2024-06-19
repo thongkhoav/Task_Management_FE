@@ -17,4 +17,15 @@ export class TaskService {
   createTask(task: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/api/v1/tasks`, task);
   }
+
+  updateStatusTask(task: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/api/v1/tasks/status`, task);
+  }
+
+  updateAssignUser(taskId: string, userId: string): Observable<any> {
+    return this.http.put<any>(
+      `${this.baseUrl}/api/v1/tasks/assign-user?taskId=${taskId}&userId=${userId}`,
+      {}
+    );
+  }
 }

@@ -1,6 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
@@ -20,6 +25,8 @@ export class CreateTaskModalComponent implements OnInit {
   myform = this.buildr.group({
     title: this.buildr.control('', [Validators.required]),
     description: this.buildr.control('', [Validators.required]),
+    dueDate: this.buildr.control('', [Validators.required, this.dateValidator]),
+    userId: this.buildr.control(''),
   });
 
   constructor(
@@ -52,6 +59,14 @@ export class CreateTaskModalComponent implements OnInit {
     );
   }
 
+  dateValidator(control: AbstractControl): ValidationErrors | null {
+    const inputDate = new Date(control.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to the start of the day
+
+    return inputDate > today ? null : { invalidDate: true };
+  }
+
   // USE for edit 1 room
   // setpopupdata(code: any) {
   //   this.service.GetCustomerbycode(code).subscribe((item) => {
@@ -70,14 +85,22 @@ export class CreateTaskModalComponent implements OnInit {
   }
 
   createTask() {
-    this.taskService
-      .createTask({
-        name: this.myform.value.title,
-        description: this.myform.value.description,
-      })
-      .subscribe((res) => {
-        this.toastr.success('SUCCESS', 'Task created successfully');
-        this.closepopup();
-      });
+    if (this.myform.valid) {
+      console.log(this.myform.value);
+      this.taskService
+        .createTask({
+          title: this.myform.value.title,
+          description: this.myform.value.description,
+          roomId: this.inputdata.roomId,
+          dueDate: this.myform.value.dueDate,
+          userId: this.myform.value.userId,
+        })
+        .subscribe((res) => {
+          this.toastr.success('SUCCESS', 'Task created successfully');
+          this.closepopup();
+        });
+    } else {
+      this.toastr.error('Please fill in all required fields');
+    }
   }
 }
