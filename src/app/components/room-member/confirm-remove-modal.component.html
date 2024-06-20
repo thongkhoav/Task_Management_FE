@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Confirm remove member</h2>
+<mat-dialog-content>
+  <p>Are you sure to remove {{ inputdata.name }}?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="onConfirm()" mat-raised-button type="submit" color="primary">
+    Ok
+  </button>
+  <a (click)="onCancelConfirm()" mat-raised-button color="warn">Close</a>
+</mat-dialog-actions>

@@ -19,6 +19,11 @@ import { RoomDetailComponent } from './components/room-detail/room-detail.compon
 import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import {
+  ConfirmRemoveModalComponent,
+  RoomMemberComponent,
+} from './components/room-member/room-member.component';
+import { AddMemberModalComponent } from './components/add-member-modal/add-member-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +33,12 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     HomeComponent,
     CreateRoomModalComponent,
     RoomDetailComponent,
+    RoomMemberComponent,
     CreateTaskModalComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
+    AddMemberModalComponent,
+    ConfirmRemoveModalComponent,
   ],
   imports: [
     BrowserModule,

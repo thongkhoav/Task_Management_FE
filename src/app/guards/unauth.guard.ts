@@ -8,9 +8,9 @@ export const unauthGuard: CanActivateFn = (route, state) => {
   const isLocalSaved = authService.decodedToken();
 
   if (isLocalSaved === null) {
-    router.navigate(['/home']);
     return true;
   }
   console.log('You are not authorized to view this page');
+  router.navigate(['/home']);
   return false;
 };

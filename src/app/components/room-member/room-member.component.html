@@ -1,0 +1,77 @@
+<div class="mt-10">
+  <ng-container *ngIf="roomDetail; else notFoundGroup">
+    <h1 class="mb-4 flex justify-between gap-4 border rounded-md p-4 shadow-sm">
+      <div class="flex flex-col">
+        <span class="text-2xl font-bold"
+          >Welcome to Group {{ roomDetail?.roomName }}</span
+        >
+        <span>{{ roomDetail?.roomDescription }}</span>
+        <div
+          class="flex items-center gap-1 text-lg px-3 py-1 bg-slate-100 rounded-sm"
+        >
+          {{ roomDetail?.owner.name }}
+        </div>
+      </div>
+      <div class="flex flex-col justify-between">
+        <button
+          (click)="addMember()"
+          *ngIf="isOwner"
+          class="bg-green-500 border text-white text-sm p-2 rounded-md font-bold hover:bg-green-600"
+        >
+          Add Member
+        </button>
+        <a
+          [routerLink]="['/room', roomId, 'tasks']"
+          *ngIf="roomDetail?.owner.id === user?.nameid"
+          class="bg-blue-500 border text-white text-sm p-2 rounded-md font-bold hover:bg-blue-600 text-center"
+        >
+          Tasks
+        </a>
+      </div>
+    </h1>
+
+    <ng-container *ngIf="members.length; else noMembers">
+      <div class="flex flex-col gap-2">
+        <div
+          *ngFor="let member of members; let number = index"
+          class="border rounded-md px-5 py-2 shadow flex justify-between items-center"
+        >
+          <div class="flex items-center gap-5">
+            <span
+              class="text-lg font-bold w-7 h-7 flex items-center justify-center rounded-full bg-blue-300"
+              >{{ number + 1 }}</span
+            >
+            <div class="flex flex-col">
+              <h1 class="text-xl">
+                {{ member.name }}
+              </h1>
+              <p class="text-sm">{{ member.email }}</p>
+            </div>
+          </div>
+          <button
+            *ngIf="roomDetail?.owner.id === user?.nameid"
+            (click)="removeMember(member)"
+            class="text-white text-sm bg-red-500 p-2 rounded-md"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+<ng-template #notFoundGroup>
+  <!-- Component or content to render if groupId is null or not available -->
+  <h1 class="text-red-500 text-center text-lg">Not found group</h1>
+  <a
+    [routerLink]="['/', 'home']"
+    routerLinkActive="active"
+    class="text-blue-500 hover:underline cursor-pointer block"
+    >Home</a
+  >
+</ng-template>
+
+<ng-template #noMembers>
+  <!-- Component or content to render if groupId is null or not available -->
+  <h1 class="text-red-500 text-center text-lg">No tasks</h1>
+</ng-template>

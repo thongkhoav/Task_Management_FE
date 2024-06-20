@@ -9,6 +9,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { authGuard } from './guards/auth.guard';
 import { unauthGuard } from './guards/unauth.guard';
 import { AuthService } from './services/auth.service';
+import { RoomMemberComponent } from './components/room-member/room-member.component';
 
 const getDefaultRoute = () => {
   const isLoggedIn = localStorage.getItem('task_management_token')
@@ -44,8 +45,12 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'room/:id',
+        path: 'room/:id/tasks',
         component: RoomDetailComponent,
+      },
+      {
+        path: 'room/:id/members',
+        component: RoomMemberComponent,
       },
     ],
   },

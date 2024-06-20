@@ -21,4 +21,20 @@ export class RoomService {
   createRoom(room: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/api/v1/rooms`, room);
   }
+
+  addRoomMember(email: string, roomId: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/api/v1/rooms/member`, {
+      email,
+      roomId,
+    });
+  }
+
+  removeRoomMember(roomId: string, userId: string): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/api/v1/rooms/member`, {
+      body: {
+        roomId,
+        userId,
+      },
+    });
+  }
 }

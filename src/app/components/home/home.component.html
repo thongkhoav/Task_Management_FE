@@ -20,7 +20,7 @@
         <div>
           <ng-container *ngIf="room.isJoined; else noLink">
             <a
-              [routerLink]="['/room', room.id]"
+              [routerLink]="['/room', room.id, 'tasks']"
               class="text-xl font-bold underline cursor-pointer"
             >
               {{ room.name }}
