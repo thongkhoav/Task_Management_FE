@@ -20,6 +20,7 @@ export class RoomDetailComponent {
   roomDetail: any;
   user: any;
   roomId: string | null = null;
+  users: any;
 
   constructor(
     private userService: UserService,
@@ -37,6 +38,24 @@ export class RoomDetailComponent {
       this.loadTasks(this.roomId);
       this.user = this.authService.decodedToken();
     }
+  }
+
+  loadUsers() {
+    if (!this.roomId) {
+      return;
+    }
+
+    this.subscriptions.push(
+      this.userService.getUsers(this.roomId, true).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.users = res.result;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      })
+    );
   }
 
   loadRoom(roomId: string) {
@@ -106,7 +125,11 @@ export class RoomDetailComponent {
     this.Openpopup(0, 'Create task', CreateTaskModalComponent);
   }
 
-  Openpopup(code: any, title: any, component: any) {
+  editTask(task: any) {
+    this.Openpopup(task, 'Edit task', CreateTaskModalComponent);
+  }
+
+  Openpopup(task: any, title: any, component: any) {
     var _popup = this.dialog.open(component, {
       width: '40%',
       enterAnimationDuration: '600ms',
@@ -114,7 +137,7 @@ export class RoomDetailComponent {
       data: {
         roomId: this.roomId,
         title: title,
-        code: code,
+        task: task,
       },
     });
     _popup.afterClosed().subscribe((item) => {

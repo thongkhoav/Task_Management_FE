@@ -17,6 +17,8 @@ import { CreateRoomModalComponent } from './components/create-room-modal/create-
 import { MaterialModule } from './material-module';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
 import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { CreateTaskModalComponent } from './components/create-task-modal/create-
     CreateRoomModalComponent,
     RoomDetailComponent,
     CreateTaskModalComponent,
+    AuthLayoutComponent,
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,

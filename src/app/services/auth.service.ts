@@ -23,8 +23,8 @@ export class AuthService {
   }
 
   signOut() {
-    this.router.navigate(['login']);
     localStorage.removeItem('task_management_token');
+    this.router.navigate(['login']);
   }
 
   storeToken(accessToken: string, refreshToken: string) {

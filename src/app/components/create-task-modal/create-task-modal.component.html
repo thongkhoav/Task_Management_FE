@@ -1,4 +1,4 @@
-<form [formGroup]="myform" (ngSubmit)="createTask()">
+<form [formGroup]="myform" (ngSubmit)="saveTask()">
   <h1 mat-dialog-title>{{ inputdata.title }}</h1>
   <div mat-dialog-content>
     <mat-form-field class="w-full">
@@ -22,7 +22,7 @@
         Due date must be greater than today.
       </mat-error>
     </mat-form-field>
-    <mat-form-field *ngIf="users.length" class="w-full mt-2">
+    <mat-form-field *ngIf="users?.length" class="w-full mt-2">
       <mat-label>Assign user</mat-label>
       <mat-select formControlName="userId">
         <mat-option *ngFor="let user of users; track: user" [value]="user.id">{{

@@ -1,0 +1,30 @@
+<div class="flex justify-center">
+  <div class="min-w-[500px]">
+    <div class="mb-5 bg-slate-200 flex justify-between">
+      <p
+        [routerLink]="['/', 'home']"
+        routerLinkActive="active"
+        class="px-5 py-2 w-fit hover:bg-slate-300 cursor-pointer block"
+      >
+        Home
+      </p>
+      <div class="flex items-center gap-1">
+        <p
+          routerLinkActive="active"
+          class="px-3 w-fit bg-blue-200 border border-blue-300 h-fit rounded-lg"
+        >
+          {{ user?.unique_name || "Not have name" }}
+        </p>
+        <button
+          (click)="logout()"
+          routerLinkActive="active"
+          class="px-5 py-2 w-fit hover:bg-slate-300 cursor-pointer flex items-center gap-2"
+        >
+          <mat-icon> logout </mat-icon>
+          Logout
+        </button>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

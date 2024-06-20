@@ -18,6 +18,10 @@ export class TaskService {
     return this.http.post<any>(`${this.baseUrl}/api/v1/tasks`, task);
   }
 
+  updateTask(taskId: string, task: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/api/v1/tasks/${taskId}`, task);
+  }
+
   updateStatusTask(task: any): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/api/v1/tasks/status`, task);
   }
