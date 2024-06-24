@@ -10,9 +10,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { CustomInterceptor } from './services/custom.interceptor';
-import { MyInterceptor } from './services/my.interceptor';
-import { MyhttpInterceptor } from './services/myhttp.interceptor';
+import { CustomInterceptor } from './interceptors/custom.interceptor';
+import { MyInterceptor } from './interceptors/my.interceptor';
+import { MyhttpInterceptor } from './interceptors/myhttp.interceptor';
 import { CreateRoomModalComponent } from './components/create-room-modal/create-room-modal.component';
 import { MaterialModule } from './material-module';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
@@ -24,6 +24,7 @@ import {
   RoomMemberComponent,
 } from './components/room-member/room-member.component';
 import { AddMemberModalComponent } from './components/add-member-modal/add-member-modal.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -53,17 +54,7 @@ import { AddMemberModalComponent } from './components/add-member-modal/add-membe
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: CustomInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MyInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MyhttpInterceptor,
+      useClass: TokenInterceptor,
       multi: true,
     },
   ],

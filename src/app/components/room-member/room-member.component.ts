@@ -72,7 +72,7 @@ export class RoomMemberComponent {
         next: (res) => {
           console.log(res);
           this.roomDetail = res.result;
-          this.isOwner = this.user.nameid === res.result.owner.id;
+          this.isOwner = this.user.sub === res.result.owner.id;
         },
         error: (err) => {
           console.log(err);

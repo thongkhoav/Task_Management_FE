@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { TokenApiModel } from '../models/token-api.model';
 
 @Injectable({
   providedIn: 'root',
@@ -58,5 +59,9 @@ export class AuthService {
 
   getRoleFromToken() {
     if (this.userPayload) return this.userPayload.role;
+  }
+
+  renewToken(tokenApi: TokenApiModel) {
+    return this.http.post<any>(`${this.baseUrl}/api/auth/refresh`, tokenApi);
   }
 }

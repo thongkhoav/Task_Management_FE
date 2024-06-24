@@ -16,14 +16,14 @@
       <div class="flex flex-col justify-between">
         <button
           (click)="createTask()"
-          *ngIf="roomDetail?.owner.id === user?.nameid"
+          *ngIf="roomDetail?.owner.id === user?.sub"
           class="bg-blue-500 border text-white text-sm p-2 rounded-md font-bold hover:bg-blue-600"
         >
           Add Task
         </button>
         <a
           [routerLink]="['/room', roomId, 'members']"
-          *ngIf="roomDetail?.owner.id === user?.nameid"
+          *ngIf="roomDetail?.owner.id === user?.sub"
           class="bg-green-500 border text-white text-sm p-2 rounded-md font-bold hover:bg-green-600"
         >
           Members
@@ -69,8 +69,8 @@
             <div class="flex items-center gap-2">
               <ng-container
                 *ngIf="
-                  roomDetail?.owner.id === user?.nameid ||
-                    task.user.id === user?.nameid;
+                  roomDetail?.owner.id === user?.sub ||
+                    task.user.id === user?.sub;
                   else notChangeStatus
                 "
               >
@@ -93,8 +93,8 @@
               <button
                 (click)="updateStatus(task)"
                 *ngIf="
-                  roomDetail?.owner.id === user?.nameid ||
-                  task.user.id === user?.nameid
+                  roomDetail?.owner.id === user?.sub ||
+                  task.user.id === user?.sub
                 "
                 class="bg-blue-500 border text-white text-sm p-1 px-2 rounded-md hover:bg-blue-600"
               >
